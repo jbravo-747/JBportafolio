@@ -30,12 +30,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between md:items-end">
-          <p className="max-w-sm text-left text-on-surface-variant md:text-right">
+        <div className="flex flex-col gap-lg">
+          <p className="max-w-sm text-left text-on-surface-variant md:ml-auto md:text-right">
             Cierro la brecha entre los datasets crudos y la inteligencia
             estratégica.
           </p>
-          <div className="mt-lg self-start rounded-full bg-primary-container p-base md:self-end">
+          <div className="self-start rounded-full bg-primary-container p-base md:self-end">
             <div className="flex items-center gap-xs rounded-full bg-background px-md py-xs">
               <div className="h-2 w-2 animate-pulse rounded-full bg-primary-container" />
               <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary-container">

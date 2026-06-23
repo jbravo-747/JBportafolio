@@ -63,11 +63,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               : "flex flex-1 flex-col"
           }
         >
-          <div className={featured ? "max-w-xl" : ""}>
+          <div className={featured ? "min-w-0 flex-1" : ""}>
             <h3 className="mb-xs font-headline text-[24px] leading-tight text-on-surface md:text-headline-lg-mobile">
               {title}
             </h3>
-            <p className="mb-md text-body-md text-on-surface-variant">{description}</p>
+            <p className="mb-md max-w-prose text-body-md text-on-surface-variant">
+              {description}
+            </p>
             <StackTags stack={stack} />
           </div>
 
