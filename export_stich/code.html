@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DATA_ARCHITECT | Engineering Clarity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&amp;family=Geist:wght@300;400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0e0e0e; }
+        ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #bef264; }
+        
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover {
+            border-color: #bef264;
+            transform: translateY(-4px);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#fcffff",
+                        "primary-fixed-dim": "#a4d64c",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "background": "#0e0e0e",
+                        "outline": "#8d937e",
+                        "on-primary-fixed": "#131f00",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#2a2a2a",
+                        "primary-fixed": "#bff365",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-container": "#646363",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "tertiary-container": "#e4e1e0",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-tint": "#a4d64c",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface": "#131313",
+                        "on-secondary": "#2f3131",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-error": "#690005",
+                        "surface-container": "#201f1f",
+                        "primary-container": "#bef264",
+                        "error-container": "#93000a",
+                        "secondary": "#c6c6c7",
+                        "surface-container-highest": "#353534",
+                        "surface-bright": "#3a3939",
+                        "surface-variant": "#353534",
+                        "on-primary": "#233600",
+                        "primary": "#fefff1",
+                        "on-tertiary": "#313030",
+                        "on-surface": "#e5e2e1",
+                        "secondary-container": "#454747",
+                        "on-background": "#e5e2e1",
+                        "on-surface-variant": "#c3c9b2",
+                        "on-primary-container": "#4b6e00",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-dim": "#131313",
+                        "inverse-primary": "#476800",
+                        "surface-container-high": "#2a2a2a",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#b4b5b5",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary-fixed-variant": "#354e00",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#454747"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "xl": "80px",
+                        "sm": "16px",
+                        "base": "4px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "lg": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Space Grotesk"],
+                        "display-xl-mobile": ["Space Grotesk"],
+                        "mono-code": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "body-md": ["Geist"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-xl-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "display-xl": ["80px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "mono-code": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-md h-xl">
+<a class="font-display-xl text-body-lg font-bold tracking-tighter text-primary-container" href="#">DATA_ARCHITECT</a>
+<div class="hidden md:flex gap-md items-center">
+<a class="text-primary-container font-bold border-b-2 border-primary-container pb-1 font-body-md text-body-md hover:text-primary-fixed-dim transition-colors duration-200" href="#work">Work</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary-fixed-dim transition-colors duration-200" href="#expertise">Expertise</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary-fixed-dim transition-colors duration-200" href="#insights">Insights</a>
+<a class="ml-sm px-sm py-xs bg-primary-container text-on-primary-container font-bold rounded hover:opacity-80 scale-95 transition-all" href="#contact">Contact</a>
+</div>
+<button class="md:hidden text-primary-container">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-xl px-md overflow-hidden">
+<div class="absolute inset-0 z-0">
+
+</div>
+<div class="max-w-container-max mx-auto w-full relative z-10 reveal">
+<h1 class="font-display-xl text-display-xl-mobile md:text-display-xl max-w-4xl text-primary leading-tight mb-md">
+                    Engineering clarity from <span class="text-primary-container">complexity</span>.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-lg">
+                    I build high-performance interactive data visualizations and decision-support tools for global think tanks and research institutions.
+                </p>
+<div class="flex flex-wrap gap-md">
+<a class="px-lg py-sm bg-primary-container text-on-primary-container font-bold rounded flex items-center gap-xs hover:scale-105 transition-transform" href="#work">
+                        View Work <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="px-lg py-sm border border-outline-variant text-on-surface font-bold rounded hover:bg-surface-container-high transition-colors" href="#contact">
+                        Contact
+                    </a>
+</div>
+</div>
+<div class="absolute bottom-md left-1/2 -translate-x-1/2 flex flex-col items-center opacity-50 animate-bounce">
+<span class="font-mono-code text-mono-code mb-base uppercase tracking-widest">Scroll</span>
+<span class="material-symbols-outlined">south</span>
+</div>
+</section>
+<!-- Bento Grid Projects -->
+<section class="py-xl px-md max-w-container-max mx-auto" id="work">
+<div class="mb-lg reveal">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-xs">Featured Operations</h2>
+<div class="h-base w-xl bg-primary-container"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Project 1: Large Bento -->
+<div class="md:col-span-8 bento-card bg-surface-container-low border border-outline-variant p-md reveal">
+<div class="aspect-video mb-md overflow-hidden bg-surface-container-high relative group">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A sophisticated dark-themed dashboard showing global policy data with glowing green lines and complex data nodes on a world map. Cinematic lighting, ultra-modern tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7i6-RDKJkcEczvqEwhj8HQbLt5JIjttd_4vnxl_N06FouE8WhBrbqL2KW1Cr64FL47UQ5UxVKyASvVYYbWy0gsqUNL8-tzZuM91VmIau68QZStdTS_dNHCB86KKUfrQ2KnwL9CIf2-Zf02DhXR76D16IaCWGUUmO7iLG6RFv76ejj38jd3FpYTI0b1ocyX2dODvswiExwRq3z0-CSZxG90V85fd_LPRgwX_Q2j1W3mKHW1iFmi-vW1qzYFxFbTHZFYK9TjUZxJn06"/>
+<div class="absolute top-md left-md">
+<span class="bg-background/80 backdrop-blur px-sm py-base text-mono-code text-xs uppercase text-primary-container border border-primary-container/20">Data Viz</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg text-headline-lg-mobile mb-xs">Global Policy Index</h3>
+<p class="text-on-surface-variant max-w-md mb-md">A real-time tracking engine for legislative shifts across 140 jurisdictions, utilizing Bayesian modeling for trend prediction.</p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-xs py-1 bg-surface-container-highest text-mono-code text-[12px] text-on-surface-variant uppercase">Next.js</span>
+<span class="px-xs py-1 bg-surface-container-highest text-mono-code text-[12px] text-on-surface-variant uppercase">D3.js</span>
+<span class="px-xs py-1 bg-surface-container-highest text-mono-code text-[12px] text-on-surface-variant uppercase">Rust</span>
+</div>
+</div>
+<a class="text-primary-container hover:underline font-bold flex items-center gap-xs" href="#">
+                            View project <span class="material-symbols-outlined">north_east</span>
+</a>
+</div>
+</div>
+<!-- Project 2: Small Bento -->
+<div class="md:col-span-4 bento-card bg-surface-container-low border border-outline-variant p-md reveal">
+<div class="aspect-square mb-md overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover opacity-60" data-alt="Microscopic-style data visualization showing intricate network nodes and connections in electric lime green on a deep charcoal background. Technical editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHPK3LQ4QRFA_-e1dXdtAsEMzmRFTe_poB_lZsiihjV7xrgdZP_rQuHqPI54DoxvTOHsGrgO0-7uRc7QdrOGjtxRb1uSWF9r0d9LGfzQK4bf4WrDgCUqg1JTh7TfCxWPo4A_4Va7enVAB2opJUtKLiT7HuA_w0FrjMG4ZJ_2-XtT_cXMVk4STfSlbzlD8_6s01H1Z08p4KRvZHRWSCihomZOPTjdsk78IYo7jaFwpjSqYvxzo8ajMrX-8il5j4OtNPOtsH0OPIfF-4"/>
+</div>
+<span class="bg-background/80 backdrop-blur px-sm py-base text-mono-code text-xs uppercase text-primary-container border border-primary-container/20 inline-block mb-sm">Product</span>
+<h3 class="font-headline-lg text-headline-lg-mobile text-[24px] mb-xs">NodeExplorer v2</h3>
+<p class="text-on-surface-variant text-body-md mb-md">Interactive knowledge graph for mapping political influence networks.</p>
+<a class="text-primary-container hover:underline font-bold flex items-center gap-xs" href="#">
+                        View project <span class="material-symbols-outlined text-[18px]">north_east</span>
+</a>
+</div>
+<!-- Project 3: Vertical Bento -->
+<div class="md:col-span-4 bento-card bg-surface-container-low border border-outline-variant p-md reveal">
+<div class="h-64 mb-md overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Abstract data waves representing economic shifts, styled like a topographic map in black and neon green. Sharp lines, minimalist layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtTvwWOaI_hcBEC9Bl5t2lQPEH0c1rKi4s_ixWzs_uVZso4J19oafTOXRQSvEaSQBsJxMW71mHkyQgDJoz5ONjNZzWQLI1YTPcxyLl31lfscXEZnm9CXf_QGOaygmeqrm7aK8c2R9p1b15WXJJbtnF0q6EbD7Yq7KAujbxCZ64uQE88WXgGbS-XkqiNEPiEu9doqLHBKZUueJ24dfde0saRFZT2AsLRPBKL1mVZ-xZyxe8Kajq5xU01YBNQYlcEdjHAaCYwXlcRVbA"/>
+</div>
+<span class="bg-background/80 backdrop-blur px-sm py-base text-mono-code text-xs uppercase text-primary-container border border-primary-container/20 inline-block mb-sm">Data Viz</span>
+<h3 class="font-headline-lg text-headline-lg-mobile text-[24px] mb-xs">Economic Resilience Tracker</h3>
+<p class="text-on-surface-variant text-body-md mb-md">Custom dashboard for visualizing supply chain vulnerabilities.</p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="text-mono-code text-[11px] text-on-surface-variant">Three.js</span>
+<span class="text-mono-code text-[11px] text-on-surface-variant">•</span>
+<span class="text-mono-code text-[11px] text-on-surface-variant">Python</span>
+</div>
+<a class="text-primary-container hover:underline font-bold flex items-center gap-xs" href="#">
+                        ↗
+                    </a>
+</div>
+<!-- Project 4: Horizontal Bento -->
+<div class="md:col-span-8 bento-card bg-surface-container-low border border-outline-variant p-md reveal">
+<div class="flex flex-col md:flex-row gap-md h-full">
+<div class="w-full md:w-1/2 aspect-video md:aspect-auto bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist UI showing a sidebar of data metrics and a central canvas of flowing particles. Electric lime highlights on a deep black canvas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx0O99SEJQzEfkwmKTD78BG1qvoeOcAvxRV1aSM28rknKdDqfJxee36f40gb0WNK4m0YIuuQCRfPP5HEeZ5XcuIBdnxSP40kq07oo2UpOPcOdCy5YHuACh-eSBA0pVmlKSjiFDfO9mU_o2HcEN0_2Os7Hjxi8JVITZQsqjZ0jZrHkul5c3K18ASViHs2plDJQAuOlwQme6p9m1q3TWwBaKanfHtLobu7feai4wzdJhcLJdajZGreNqY3B3Mdurf73zjw_JxaaB_0G9"/>
+</div>
+<div class="w-full md:w-1/2 flex flex-col justify-center">
+<span class="text-primary-container font-mono-code text-xs mb-xs">INTERNAL TOOLING</span>
+<h3 class="font-headline-lg text-headline-lg-mobile text-[28px] mb-sm">Sovereign Data Engine</h3>
+<p class="text-on-surface-variant mb-lg">A private analytical suite for managing sensitive geopolitical datasets with end-to-end encryption.</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary-container" data-weight="fill">security</span>
+<span class="material-symbols-outlined text-primary-container" data-weight="fill">database</span>
+<span class="material-symbols-outlined text-primary-container" data-weight="fill">query_stats</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Expertise/Stack Section -->
+<section class="py-xl px-md bg-surface-container-lowest border-y border-outline-variant" id="expertise">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div class="reveal">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-md">Precision Stack</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg leading-relaxed">
+                        My philosophy is built on the intersection of <span class="text-primary">high-performance engineering</span> and <span class="text-primary">cognitive ergonomics</span>. I leverage the latest in web technologies to ensure that data remains legible, actionable, and beautiful under extreme density.
+                    </p>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<div class="font-display-xl text-[48px] text-primary-container font-bold mb-xs">99.9%</div>
+<div class="font-mono-code text-mono-code text-on-surface-variant uppercase tracking-tighter">Pipeline Uptime</div>
+</div>
+<div>
+<div class="font-display-xl text-[48px] text-primary-container font-bold mb-xs">&lt; 20ms</div>
+<div class="font-mono-code text-mono-code text-on-surface-variant uppercase tracking-tighter">Latent Response</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm reveal">
+<div class="bg-surface-container-high border border-outline-variant p-md flex flex-col justify-between h-40">
+<span class="material-symbols-outlined text-primary-container text-display-xl">terminal</span>
+<span class="font-mono-code font-bold">RUST / WASM</span>
+</div>
+<div class="bg-surface-container-high border border-outline-variant p-md flex flex-col justify-between h-40">
+<span class="material-symbols-outlined text-primary-container text-display-xl">query_stats</span>
+<span class="font-mono-code font-bold">D3.js / CANVAS</span>
+</div>
+<div class="bg-surface-container-high border border-outline-variant p-md flex flex-col justify-between h-40">
+<span class="material-symbols-outlined text-primary-container text-display-xl">layers</span>
+<span class="font-mono-code font-bold">NEXT.js / REACT</span>
+</div>
+<div class="bg-surface-container-high border border-outline-variant p-md flex flex-col justify-between h-40">
+<span class="material-symbols-outlined text-primary-container text-display-xl">hub</span>
+<span class="font-mono-code font-bold">GRAPHQL / POSTGRES</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xl px-md max-w-container-max mx-auto text-center reveal">
+<h2 class="font-display-xl text-display-xl-mobile md:text-display-xl mb-md">Ready to visualize the future?</h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-lg">Currently accepting partnerships for Q3 2024. Let's discuss your data architecture.</p>
+<a class="inline-flex items-center gap-md px-xl py-lg bg-primary-container text-on-primary-container font-bold rounded-xl text-xl hover:scale-105 transition-all" href="mailto:contact@data-architect.io">
+                Initiate Contact <span class="material-symbols-outlined text-3xl">send</span>
+</a>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl bg-surface-container-lowest border-t border-outline-variant">
+<div class="max-w-container-max mx-auto px-md grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col justify-between">
+<div>
+<h2 class="font-display-xl text-body-lg font-bold text-primary mb-xs">DATA_ARCHITECT</h2>
+<p class="font-mono-code text-mono-code text-on-tertiary-fixed-variant">© 2024 DATA_ARCHITECT. Built for high-performance engineering.</p>
+</div>
+<div class="flex gap-md mt-lg">
+<a class="text-on-tertiary-fixed-variant hover:text-primary-container transition-colors font-mono-code text-mono-code uppercase tracking-widest" href="#">LinkedIn</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary-container transition-colors font-mono-code text-mono-code uppercase tracking-widest" href="#">GitHub</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary-container transition-colors font-mono-code text-mono-code uppercase tracking-widest" href="#">Twitter</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary-container transition-colors font-mono-code text-mono-code uppercase tracking-widest" href="#">Email</a>
+</div>
+</div>
+<div class="flex flex-col md:items-end justify-between">
+<div class="text-left md:text-right max-w-sm">
+<p class="text-on-surface-variant mb-sm">Focused on bridging the gap between raw datasets and strategic intelligence.</p>
+</div>
+<div class="bg-primary-container p-base rounded-full mt-lg self-start md:self-end">
+<div class="flex items-center gap-xs px-md py-xs bg-background rounded-full">
+<div class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></div>
+<span class="text-[10px] font-mono-code text-primary-container uppercase font-bold tracking-widest">System Status: Optimal</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Scroll Reveal Observer
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(revealCallback, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Interactive Cursor Shadow Effect (Subtle)
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            // You could use this to drive a shader uniform if desired
+        });
+    </script>
+</body></html>
