@@ -12,7 +12,7 @@ export const site = {
   },
   socials: [
     { label: "GitHub", href: "https://github.com/jbravo-747" },
-    { label: "LinkedIn", href: "#" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/joel-e-bravo-64999711a/" },
     { label: "Email", href: "mailto:ti@urentit.mx" },
   ],
 } as const;
