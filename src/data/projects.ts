@@ -24,6 +24,7 @@ export const projects: Project[] = [
     href: "https://imco.org.mx/monitor/mujeres-en-la-economia/",
     cols: 8,
     featured: true,
+    image: "/projects/mujeres-economia.jpg",
     seed: 1,
   },
   {
@@ -34,6 +35,7 @@ export const projects: Project[] = [
     stack: ["React", "D3.js", "Datos abiertos"],
     href: "https://comparacarreras.imco.org.mx/",
     cols: 4,
+    image: "/projects/compara-carreras.png",
     seed: 2,
   },
   {
@@ -44,6 +46,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Visualización", "Comercio"],
     href: "https://imco.org.mx/monitor/radar-arancelario/",
     cols: 4,
+    image: "/projects/radar-arancelario.jpg",
     seed: 3,
   },
   {
@@ -55,6 +58,7 @@ export const projects: Project[] = [
     href: "https://tresmundiales.imco.org.mx/",
     cols: 8,
     featured: true,
+    image: "/projects/tres-mundiales.png",
     seed: 4,
   },
   {
@@ -65,6 +69,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Vercel", "Prototipo"],
     href: "https://fmcn-prototipo.vercel.app/",
     cols: 6,
+    image: "/projects/fmcn.png",
     seed: 5,
   },
   {
@@ -75,6 +80,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Tailwind", "Branding"],
     href: "https://urentit.mx/",
     cols: 6,
+    image: "/projects/urentit.jpg",
     seed: 6,
   },
 ];
