@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { RippleGrid } from "@/components/RippleGrid";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,6 +40,7 @@ export default function RootLayout({
           {/* Sin JS: revela todo el contenido (sin animación). */}
           <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
         </noscript>
+        <RippleGrid />
         {children}
       </body>
     </html>

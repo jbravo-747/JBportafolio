@@ -8,18 +8,7 @@ export function Hero() {
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden px-md pt-xl"
     >
-      {/* subtle grid background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#bef264 1px, transparent 1px), linear-gradient(90deg, #bef264 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-          maskImage:
-            "radial-gradient(ellipse 80% 60% at 30% 40%, #000 30%, transparent 75%)",
-        }}
-      />
+      {/* El fondo de cuadrícula animada lo provee <RippleGrid /> (canvas global). */}
       <Reveal className="relative z-10 mx-auto w-full max-w-container-max">
         <p className="mb-sm font-mono text-mono-code uppercase tracking-widest text-primary-fixed-dim">
           {site.role}

@@ -17,7 +17,7 @@ export function Expertise() {
   return (
     <section
       id="expertise"
-      className="border-y border-outline-variant bg-surface-container-lowest px-md py-xl"
+      className="border-y border-outline-variant px-md py-xl"
     >
       <div className="mx-auto grid max-w-container-max grid-cols-1 items-center gap-xl md:grid-cols-2">
         <Reveal>

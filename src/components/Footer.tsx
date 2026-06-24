@@ -2,7 +2,7 @@ import { site } from "@/data/site";
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-outline-variant bg-surface-container-lowest py-xl">
+    <footer className="w-full border-t border-outline-variant py-xl">
       <div className="mx-auto grid max-w-container-max grid-cols-1 gap-md px-md md:grid-cols-2">
         <div className="flex flex-col justify-between">
           <div>
