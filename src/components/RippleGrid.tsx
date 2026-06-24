@@ -20,7 +20,7 @@ precision highp float;
 
 uniform vec2  u_res;          // tamaño del drawing buffer (px de dispositivo)
 uniform float u_dpr;          // device pixel ratio
-uniform vec3  u_ripples[${MAX_RIPPLES}]; // x,y en px CSS (origen arriba-izq), z = edad en seg (<0 = inactivo)
+uniform vec4  u_ripples[${MAX_RIPPLES}]; // x,y px CSS (origen arriba-izq), z = edad (seg, <0 inactivo), w = fuerza
 uniform int   u_count;
 
 const float CELL        = 48.0;   // px CSS por celda
@@ -43,7 +43,7 @@ void main() {
   float energy = 0.0;
   for (int i = 0; i < ${MAX_RIPPLES}; i++) {
     if (i >= u_count) break;
-    vec3 r = u_ripples[i];
+    vec4 r = u_ripples[i];
     if (r.z < 0.0) continue;
     float dist = distance(frag, r.xy);
     if (dist > MAX_R) continue;
@@ -51,7 +51,7 @@ void main() {
     float ring   = exp(-pow(dist - ringR, 2.0) / (2.0 * RING_WIDTH * RING_WIDTH));
     float decay  = exp(-r.z / LIFE);                                  // se desvanece con el tiempo
     float radial = smoothstep(MAX_R, 0.0, dist);                      // limita al radio
-    energy += ring * decay * radial;
+    energy += ring * decay * radial * r.w;                            // * fuerza (clic = más marcado)
   }
   energy = clamp(energy, 0.0, 1.5);
 
@@ -144,10 +144,15 @@ export function RippleGrid() {
     window.addEventListener("resize", resize);
 
     // estela de ripples (px CSS, origen arriba-izq)
-    type R = { x: number; y: number; t0: number };
+    type R = { x: number; y: number; t0: number; s: number };
     const ripples: R[] = [];
     let lastX = -999;
     let lastY = -999;
+
+    function emit(x: number, y: number, s: number) {
+      ripples.push({ x, y, t0: performance.now(), s });
+      if (ripples.length > MAX_RIPPLES) ripples.shift();
+    }
 
     function onMove(e: PointerEvent) {
       const x = e.clientX;
@@ -156,11 +161,15 @@ export function RippleGrid() {
       if (moved < 24) return; // emite por distancia recorrida -> estela uniforme
       lastX = x;
       lastY = y;
-      ripples.push({ x, y, t0: performance.now() });
-      if (ripples.length > MAX_RIPPLES) ripples.shift();
+      emit(x, y, 1.0); // onda sutil del movimiento
     }
 
-    const data = new Float32Array(MAX_RIPPLES * 3);
+    function onDown(e: PointerEvent) {
+      // clic = onda más marcada (splash) desde el punto pulsado
+      emit(e.clientX, e.clientY, 3.0);
+    }
+
+    const data = new Float32Array(MAX_RIPPLES * 4);
 
     function frame(now: number) {
       // purga expirados y arma el buffer de uniforms
@@ -173,15 +182,16 @@ export function RippleGrid() {
       }
       for (let i = 0; i < ripples.length && count < MAX_RIPPLES; i++) {
         const age = (now - ripples[i].t0) / 1000;
-        data[count * 3] = ripples[i].x;
-        data[count * 3 + 1] = ripples[i].y;
-        data[count * 3 + 2] = age;
+        data[count * 4] = ripples[i].x;
+        data[count * 4 + 1] = ripples[i].y;
+        data[count * 4 + 2] = age;
+        data[count * 4 + 3] = ripples[i].s;
         count++;
       }
       for (let i = count; i < MAX_RIPPLES; i++) {
-        data[i * 3 + 2] = -1;
+        data[i * 4 + 2] = -1;
       }
-      gl!.uniform3fv(uRipples, data);
+      gl!.uniform4fv(uRipples, data);
       gl!.uniform1i(uCount, count);
       gl!.drawArrays(gl!.TRIANGLES, 0, 3);
       raf = requestAnimationFrame(frame);
@@ -191,10 +201,11 @@ export function RippleGrid() {
     if (reduce) {
       // sin movimiento: solo la malla tenue estática
       gl.uniform1i(uCount, 0);
-      gl.uniform3fv(uRipples, data);
+      gl.uniform4fv(uRipples, data);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     } else {
       window.addEventListener("pointermove", onMove, { passive: true });
+      window.addEventListener("pointerdown", onDown, { passive: true });
       raf = requestAnimationFrame(frame);
     }
 
@@ -211,6 +222,7 @@ export function RippleGrid() {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerdown", onDown);
       document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
