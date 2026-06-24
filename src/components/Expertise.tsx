@@ -1,7 +1,6 @@
 import { LineChart, Layers, Braces, Database } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { CountUp } from "./CountUp";
-import { StackChart } from "./StackChart";
 
 const stack = [
   { icon: LineChart, label: "D3.JS / CANVAS" },
@@ -59,10 +58,6 @@ export function Expertise() {
           ))}
         </Reveal>
       </div>
-
-      <Reveal className="mx-auto mt-xl max-w-container-max">
-        <StackChart />
-      </Reveal>
     </section>
   );
 }
