@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Download, Mail, MapPin } from "lucide-react";
 
@@ -140,23 +141,35 @@ export default function CVPage() {
       </div>
 
       {/* Encabezado */}
-      <header className="mb-xl border-b border-outline-variant pb-lg">
-        <h1 className="font-display text-display-xl-mobile font-bold leading-tight text-primary">
-          Joel Eduardo <span className="text-primary-container">Bravo</span>
-        </h1>
-        <p className="mt-xs font-mono text-mono-code uppercase tracking-widest text-primary-fixed-dim">
-          Forward Deployed Engineer · Datos &amp; DevOps
-        </p>
-        <div className="mt-md flex flex-wrap gap-md font-mono text-mono-code text-on-surface-variant">
-          <span className="flex items-center gap-xs">
-            <MapPin size={14} /> Ciudad de México
-          </span>
-          <a
-            href="mailto:bravojoel.eg@gmail.com"
-            className="flex items-center gap-xs transition-colors hover:text-primary-container"
-          >
-            <Mail size={14} /> bravojoel.eg@gmail.com
-          </a>
+      <header className="mb-xl flex flex-col gap-lg border-b border-outline-variant pb-lg sm:flex-row sm:items-center">
+        <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-xl border border-primary-container/30 sm:h-40 sm:w-40">
+          <Image
+            src="/profile.jpg"
+            alt="Ing. Joel Bravo"
+            fill
+            sizes="160px"
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div>
+          <h1 className="font-display text-display-xl-mobile font-bold leading-tight text-primary">
+            Joel Eduardo <span className="text-primary-container">Bravo</span>
+          </h1>
+          <p className="mt-xs font-mono text-mono-code uppercase tracking-widest text-primary-fixed-dim">
+            Forward Deployed Engineer · Datos &amp; DevOps
+          </p>
+          <div className="mt-md flex flex-wrap gap-md font-mono text-mono-code text-on-surface-variant">
+            <span className="flex items-center gap-xs">
+              <MapPin size={14} /> Ciudad de México
+            </span>
+            <a
+              href="mailto:bravojoel.eg@gmail.com"
+              className="flex items-center gap-xs transition-colors hover:text-primary-container"
+            >
+              <Mail size={14} /> bravojoel.eg@gmail.com
+            </a>
+          </div>
         </div>
       </header>
 
