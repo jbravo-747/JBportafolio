@@ -7,7 +7,8 @@ export function CTA() {
     <section id="contact" className="mx-auto max-w-container-max px-md py-xl text-center">
       <Reveal>
         <h2 className="mb-md font-display text-display-xl-mobile font-bold md:text-display-xl">
-          ¿Listos para visualizar lo complejo?
+          Convierto datos complejos en{" "}
+          <span className="text-primary-container">decisiones claras</span>.
         </h2>
         <p className="mx-auto mb-lg max-w-2xl font-body text-body-lg text-on-surface-variant">
           Disponible para colaboraciones en productos de datos, visualización y
