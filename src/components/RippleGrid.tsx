@@ -55,16 +55,14 @@ void main() {
   }
   energy = clamp(energy, 0.0, 1.5);
 
-  vec3 obsidian = vec3(0.0549);              // #0e0e0e
-  vec3 lime     = vec3(0.745, 0.949, 0.392); // #bef264
+  vec3 lime = vec3(0.745, 0.949, 0.392); // #bef264
 
-  float baseGrid = grid * 0.035;    // malla muy tenue siempre visible
-  float glow     = grid * energy;   // malla resaltada donde pasa la onda
+  // La cuadrícula NO se ve en reposo; solo se revela donde pasa la onda.
+  float glow = grid * energy;
 
-  vec3 col = obsidian;
-  col += lime * baseGrid;
-  col += lime * glow * 0.45;        // resplandor sutil sobre la malla
-  col += lime * energy * 0.012;     // tinte casi imperceptible del "líquido"
+  vec3 col = vec3(0.0);          // fondo negro
+  col += lime * glow * 0.6;      // la malla se revela bajo la onda
+  col += lime * energy * 0.012;  // leve halo del "líquido"
 
   gl_FragColor = vec4(col, 1.0);
 }
