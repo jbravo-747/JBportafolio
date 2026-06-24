@@ -1,5 +1,7 @@
 import { LineChart, Layers, Braces, Database } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { CountUp } from "./CountUp";
+import { StackChart } from "./StackChart";
 
 const stack = [
   { icon: LineChart, label: "D3.JS / CANVAS" },
@@ -9,8 +11,8 @@ const stack = [
 ];
 
 const stats = [
-  { value: "06", label: "Productos en producción" },
-  { value: "04", label: "Instituciones y think tanks" },
+  { value: 6, label: "Productos en producción" },
+  { value: 4, label: "Instituciones y think tanks" },
 ];
 
 export function Expertise() {
@@ -33,9 +35,10 @@ export function Expertise() {
           <div className="grid grid-cols-2 gap-md">
             {stats.map((s) => (
               <div key={s.label}>
-                <div className="mb-xs font-display text-[48px] font-bold leading-none text-primary-container">
-                  {s.value}
-                </div>
+                <CountUp
+                  value={s.value}
+                  className="mb-xs block font-display text-[48px] font-bold leading-none text-primary-container"
+                />
                 <div className="font-mono text-mono-code uppercase tracking-tight text-on-surface-variant">
                   {s.label}
                 </div>
@@ -56,6 +59,10 @@ export function Expertise() {
           ))}
         </Reveal>
       </div>
+
+      <Reveal className="mx-auto mt-xl max-w-container-max">
+        <StackChart />
+      </Reveal>
     </section>
   );
 }
