@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "JB · Engineering Clarity from Complexity",
+  title: "Ing. Joel Bravo — Data Product Engineer",
   description:
     "Construyo visualizaciones de datos interactivas y herramientas de apoyo a la decisión para think tanks e instituciones de investigación.",
 };

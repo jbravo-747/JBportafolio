@@ -2,8 +2,9 @@
 export const site = {
   wordmark: "JB",
   wordmarkSuffix: "_DATA",
-  role: "Data Product Engineer",
-  email: "ti@urentit.mx",
+  role: "Ing. Joel Bravo",
+  email: "bravojoel.eg@gmail.com",
+  cvHref: "/cv",
   hero: {
     titleStart: "Claridad a partir de la",
     titleAccent: "complejidad",
@@ -13,6 +14,6 @@ export const site = {
   socials: [
     { label: "GitHub", href: "https://github.com/jbravo-747" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/joel-e-bravo-64999711a/" },
-    { label: "Email", href: "mailto:ti@urentit.mx" },
+    { label: "Email", href: "mailto:bravojoel.eg@gmail.com" },
   ],
 } as const;

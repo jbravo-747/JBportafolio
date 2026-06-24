@@ -34,7 +34,15 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href={site.cvHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-body-md text-on-surface-variant transition-colors duration-200 hover:text-primary-fixed-dim"
+          >
+            CV
+          </a>
+          <a
+            href={`mailto:${site.email}`}
             className="ml-sm rounded bg-primary-container px-sm py-xs font-bold text-on-primary-container transition-opacity hover:opacity-80"
           >
             Contacto
@@ -65,7 +73,16 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href={site.cvHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="py-xs text-body-md text-on-surface-variant"
+          >
+            CV
+          </a>
+          <a
+            href={`mailto:${site.email}`}
             onClick={() => setOpen(false)}
             className="rounded bg-primary-container px-sm py-xs text-center font-bold text-on-primary-container"
           >

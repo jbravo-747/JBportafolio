@@ -39,7 +39,7 @@ export function Hero() {
             Ver trabajo <ArrowRight size={18} />
           </a>
           <a
-            href="#contact"
+            href={`mailto:${site.email}`}
             className="rounded border border-outline-variant px-lg py-sm font-bold text-on-surface transition-colors hover:bg-surface-container-high"
           >
             Contacto
