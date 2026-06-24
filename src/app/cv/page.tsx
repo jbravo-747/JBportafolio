@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Download, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowLeft, Download, Mail, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "CV — Ing. Joel Bravo",
@@ -151,12 +151,6 @@ export default function CVPage() {
           <span className="flex items-center gap-xs">
             <MapPin size={14} /> Ciudad de México
           </span>
-          <a
-            href="tel:+525545133436"
-            className="flex items-center gap-xs transition-colors hover:text-primary-container"
-          >
-            <Phone size={14} /> +52 55 4513 3436
-          </a>
           <a
             href="mailto:bravojoel.eg@gmail.com"
             className="flex items-center gap-xs transition-colors hover:text-primary-container"
