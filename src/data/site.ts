@@ -5,6 +5,7 @@ export const site = {
   role: "Ing. Joel Bravo",
   email: "bravojoel.eg@gmail.com",
   cvHref: "/cv",
+  linkedin: "https://www.linkedin.com/in/joel-e-bravo-64999711a/",
   hero: {
     titleStart: "Claridad a partir de la",
     titleAccent: "complejidad",

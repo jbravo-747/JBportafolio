@@ -9,6 +9,21 @@ const links = [
   { label: "Expertise", href: "#expertise" },
 ];
 
+// lucide-react ya no incluye íconos de marca, así que usamos el logo inline.
+function LinkedinIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -40,6 +55,15 @@ export function Navbar() {
             className="text-body-md text-on-surface-variant transition-colors duration-200 hover:text-primary-fixed-dim"
           >
             CV
+          </a>
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn de Joel Bravo"
+            className="flex items-center gap-xs rounded border border-outline-variant px-sm py-xs text-body-md font-medium text-on-surface transition-colors hover:border-primary-container hover:text-primary-container"
+          >
+            <LinkedinIcon /> LinkedIn
           </a>
           <a
             href={`mailto:${site.email}`}
@@ -80,6 +104,15 @@ export function Navbar() {
             className="py-xs text-body-md text-on-surface-variant"
           >
             CV
+          </a>
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-xs py-xs text-body-md text-on-surface-variant"
+          >
+            <LinkedinIcon /> LinkedIn
           </a>
           <a
             href={`mailto:${site.email}`}
