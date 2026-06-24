@@ -24,10 +24,10 @@ uniform vec3  u_ripples[${MAX_RIPPLES}]; // x,y en px CSS (origen arriba-izq), z
 uniform int   u_count;
 
 const float CELL        = 48.0;   // px CSS por celda
-const float WAVE_SPEED  = 330.0;  // px/seg de expansión del anillo
-const float RING_WIDTH  = 28.0;   // grosor del anillo
-const float LIFE        = 1.7;    // seg de vida del ripple
-const float MAX_R       = 260.0;  // radio de influencia
+const float WAVE_SPEED  = 280.0;  // px/seg de expansión del anillo
+const float RING_WIDTH  = 24.0;   // grosor del anillo
+const float LIFE        = 1.2;    // seg de vida del ripple
+const float MAX_R       = 190.0;  // radio de influencia
 
 void main() {
   // gl_FragCoord tiene origen abajo-izq; lo paso a arriba-izq y a px CSS
@@ -58,13 +58,13 @@ void main() {
   vec3 obsidian = vec3(0.0549);              // #0e0e0e
   vec3 lime     = vec3(0.745, 0.949, 0.392); // #bef264
 
-  float baseGrid = grid * 0.05;     // malla tenue siempre visible
-  float glow     = grid * energy;   // malla brillante donde pasa la onda
+  float baseGrid = grid * 0.035;    // malla muy tenue siempre visible
+  float glow     = grid * energy;   // malla resaltada donde pasa la onda
 
   vec3 col = obsidian;
   col += lime * baseGrid;
-  col += lime * glow * 1.35;
-  col += lime * energy * 0.045;     // leve tinte del "líquido" dentro de la onda
+  col += lime * glow * 0.45;        // resplandor sutil sobre la malla
+  col += lime * energy * 0.012;     // tinte casi imperceptible del "líquido"
 
   gl_FragColor = vec4(col, 1.0);
 }
@@ -153,7 +153,7 @@ export function RippleGrid() {
       const x = e.clientX;
       const y = e.clientY;
       const moved = Math.hypot(x - lastX, y - lastY);
-      if (moved < 16) return; // emite por distancia recorrida -> estela uniforme
+      if (moved < 24) return; // emite por distancia recorrida -> estela uniforme
       lastX = x;
       lastY = y;
       ripples.push({ x, y, t0: performance.now() });
