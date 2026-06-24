@@ -60,9 +60,9 @@ void main() {
   // La cuadrícula NO se ve en reposo; solo se revela donde pasa la onda.
   float glow = grid * energy;
 
-  vec3 col = vec3(0.0);          // fondo negro
-  col += lime * glow * 0.6;      // la malla se revela bajo la onda
-  col += lime * energy * 0.012;  // leve halo del "líquido"
+  vec3 col = vec3(0.0);           // fondo negro
+  col += lime * glow * 0.45;      // la malla se revela bajo la onda (0.75x del brillo previo)
+  col += lime * energy * 0.009;   // leve halo del "líquido"
 
   gl_FragColor = vec4(col, 1.0);
 }
@@ -152,7 +152,14 @@ export function RippleGrid() {
       if (ripples.length > MAX_RIPPLES) ripples.shift();
     }
 
+    function overInteractive(e: PointerEvent) {
+      const t = e.target as Element | null;
+      // sobre cards/botones/enlaces no se emite onda -> no se cruza con su hover
+      return !!t?.closest?.("a, button, [data-calm]");
+    }
+
     function onMove(e: PointerEvent) {
+      if (overInteractive(e)) return;
       const x = e.clientX;
       const y = e.clientY;
       const moved = Math.hypot(x - lastX, y - lastY);
